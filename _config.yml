@@ -1,0 +1,32 @@
+title: 乱炖
+description: 卖可乐的乱炖厨房
+author: MicroDHL
+logo: /static/img/avatar2.jpg
+github: https://github.com/microqq
+about: 正对屏幕的打字员
+
+baseurl: ""
+url: ""
+
+allowsearch: true
+
+disqus_shortname: aboutashu
+google_analytics: UA-72862926-1
+
+share:
+  twitter_username: \#
+  fb_appid: 000000000000
+
+
+enableTags: true
+tagarray: []
+
+paginate: 20
+per_page: 20
+paginate_path: "/page:num/"
+markdown: kramdown
+gems: [jekyll-paginate, jekyll-gist]
+
+markdown: kramdown
+kramdown:
+    math_engine: katex
