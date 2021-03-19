@@ -1,8 +1,6 @@
 ---
 layout: posts_by_category
-categories: 
-- graphics
-- geometry
+categories: geometry
 title: 几何
 permalink: /category/graphics/geometry
 ---
