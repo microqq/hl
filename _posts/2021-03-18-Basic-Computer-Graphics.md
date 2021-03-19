@@ -447,7 +447,7 @@ h = \frac{v\cdot{n}}{\vert{n}\vert^2},\\
 $$
 
 $$
-\vert{\vec{AP}}\vert = \vert{\vec{AB}}\vert + \vert{\vec{BP}}\vert.
+\vec{AP} = \vec{AB} + \vec{BP}.
 $$
 
 $$
@@ -455,11 +455,13 @@ Dist =
 \begin{cases}
 \vert{\vec{AP}}\vert,\quad(h\leq{0})\\
 \vert{\vec{BP}}\vert,\quad(h\geq{1})\\
-\vert{\vec{AP}}\vert - h\vert{\vec{AB}}\vert,\quad(0< h < 1>)
+\vert{\vec{AP}- h\vec{AB}}\vert,\quad(0< h < 1>)
 \end{cases}
 $$
 
 只要使 $Dist < r$，点 $P$ 必然位于胶囊体内，否则点在胶囊体外。
+
+带符号距离场与 AABB 优化的带符号距离场的区别是后者只需要对 AABB 范围内的像素采样。
 
 #### 参考
 
