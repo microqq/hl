@@ -431,19 +431,19 @@ int capsule(float px, float py, float ax, float ay, float bx, float by, float r)
 我们知道一个向量 $\vec{v} = \vec{AP}$ 在另一个向量 $\vec{n} = \vec{AB}$ 上的投影可以表示为：
 
 $$
-v_{\|} = n\frac{{v}\cdot{n}}{{\vert{n}\vert}^2}.
+v_{\|} = n\frac{v\cdot{n}}{{\vert{n}\vert}^2}.
 $$
 
 从上式可以得到投影向量的模（有符号）为:
 
 $$
-\pm\vert{v_{\|}}\vert = \frac{{v}\cdot{n}}{\vert{n}\vert}.\tag{1.9}
+\pm\vert{v_{\|}}\vert = \frac{v\cdot{n}}{\vert{n}\vert}.\tag{1.9}
 $$
 
 当式 $\text{(1.9)}$ 小于或等于 $0$ 时，表示向量 $\vec{v}$ 与向量 $\vec{n}$ 的夹角度数大于或等于 $90$，此时点 $P$ 位于空间 $S_2$，当式 $\text{(1.9)}$ 大于或等于 $\vert{n}\vert$ ，此时点 $P$ 位于空间 $S_3$，当式 $\text{(1.9)}$ 大于 $0$ 且小于 $\vert{n}\vert$ 时，则表示点 $P$ 位于空间 $S_1$。图 1.1.1 中点 $P_1$ 和 $P_2$ 位于空间 $S_1$。总结下来可以用数学式表示：
 
 $$
-h = \frac{{v}\cdot{n}}{{\vert{n}\vert}^2},\\
+h = \frac{v\cdot{n}}{{\vert{n}\vert}^2},\\
 $$
 
 $$
