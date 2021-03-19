@@ -1,12 +1,12 @@
-title: 乱炖
-description: 卖可乐的乱炖厨房
-author: MicroDHL
-logo: /hl/static/img/avatar2.jpg
-github: https://github.com/microqq
-about: 正对屏幕的打字员
+title: John Smith
+description: My Personal Blog
+author: John Smith
+logo: /hcz-jekyll-blog/static/img/avatar.png
+github: https://github.com/codeasashu
+about: Freelance developer
 
-baseurl: "https://microqq.github.io/hl"
-url: "https://microqq.github.io/hl"
+baseurl: ""
+url: ""
 
 allowsearch: true
 
@@ -25,7 +25,4 @@ paginate: 20
 per_page: 20
 paginate_path: "/page:num/"
 markdown: kramdown
-# kramdown:
-#     math_engine: katex
 gems: [jekyll-paginate, jekyll-gist]
-
