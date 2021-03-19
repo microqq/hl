@@ -407,13 +407,13 @@ Miloyip 在文中[<sup>[4]</sup>](#refer-anchor-4)提供了多种光栅化线段
 
 文中[<sup>[4]</sup>](#refer-anchor-4)所采用的胶囊体可参见下图:
 
-![capsule-point-intersect](/static/img/21c9f13d0e534cbda8c049618024255a.png)
-<p align="center">图 1.1.1 </p>
+<!-- ![capsule-point-intersect](/hl/static/img/21c9f13d0e534cbda8c049618024255a.png)
+<p align="center">图 1.1.1 </p> -->
 
-<!-- <div align=center>
-<img src="/static/img/21c9f13d0e534cbda8c049618024255a.png" width=800 />
+<div align=center>
+<img src="/hl/static/img/21c9f13d0e534cbda8c049618024255a.png" width=800 />
 <p align="center">图 1.1.1 </p>
-</div> -->
+</div>
 
 $A$，$B$ 是胶囊体的两个端点，胶囊体的半径为 $r$，$P_2$，$P_2$，$P_3$，$P_4$，$P_5$ 是胶囊体内外的五个点，
 
