@@ -23,9 +23,9 @@ categories: graphics
   - [1.1 2D 直线](#11-2d-直线)
   - [1.2 3D 直线](#12-3d-直线)
   - [1.3 直线光栅算法](#13-直线光栅算法)
-  - [1.4 三角形光栅化](#14-三角形光栅化)
   - [参考](#参考)
 - [2. 平面](#2-平面)
+  - [2.4 三角形光栅化](#24-三角形光栅化)
 - [3. 多边形网格](#3-多边形网格)
 - [4. 二次曲面](#4-二次曲面)
 - [5. 圆环面（体）](#5-圆环面体)
@@ -415,9 +415,51 @@ Miloyip 在文中[<sup>[4]</sup>](#refer-anchor-4)提供了多种光栅化线段
 <p align="center">图 1.1.1 </p>
 </div>
 
-$A$，$B$ 是胶囊体的两个端点，胶囊体的半径为 $r$，$P_2$，$P_2$，$P_3$，$P_4$，$P_5$ 是胶囊体内外的五个点，
+上图其实是胶囊体的一个穿过中心线的截面，从图中可以看到胶囊体截面由一个矩形和两个半圆弧连接而成，$A$，$B$ 是胶囊体的两个端点，胶囊体的半径为 $r$，$P_2$，$P_2$，$P_3$，$P_4$，$P_5$ 是胶囊体内外的五个点，采样法就是要判断这些点是否在胶囊体内，如果是就绘制对应的像素。分析文中[<sup>[4]</sup>](#refer-anchor-4)点与胶囊体相交测试的一段代码：
 
-#### 1.4 三角形光栅化
+```C
+int capsule(float px, float py, float ax, float ay, float bx, float by, float r) {
+    float pax = px - ax, pay = py - ay, bax = bx - ax, bay = by - ay;
+    float h = fmaxf(fminf((pax * bax + pay * bay) / (bax * bax + bay * bay), 1.0f), 0.0f);
+    float dx = pax - bax * h, dy = pay - bay * h;
+    return dx * dx + dy * dy < r * r;
+}
+```
+
+上文描述了胶囊体截面的形状由一个矩形和两个半圆弧衔接而成，如何判定点在胶囊体内或外，可以充分利用圆的特点（一点与圆相交与否可以通过点到圆心的距离 $d$ 和圆半径 $r$ 进行比较即可）。图 1.1.1，穿过点 $A$ 与 点 $B$ 分别画一条垂直于线段 $AB$ 的直线，这两条直线夹住的空间我们假定为 $S_1$，它的左侧和右侧空间分别是 $S_2$, $S_3$，显然，空间 $S_2$ 与 $S_3$ 中的点 $P$ 是否与胶囊体相交我们可以比较点到圆心的距离 $d$ 和半径 $r$ 大小即可。对于空间 $S_1$ 中的点，只需要比较点 $P$ 到线段 $AB$ 的距离和半径 $r$ 大小即可。那么，如何判断点 $P$ 在哪个空间呢？下面以点 $P_1$ 为例来分析。
+
+我们知道一个向量 $\vec{v} = \vec{AP}$ 在另一个向量 $\vec{n} = \vec{AB}$ 上的投影可以表示为：
+
+$$
+v_{\|} = n\frac{{v}\cdot{n}}{{\vert{n}\vert}^2}.
+$$
+
+从上式可以得到投影向量的模（有符号）为:
+
+$$
+\pm\vert{v_{\|}}\vert = \frac{{v}\cdot{n}}{\vert{n}\vert}.\tag{1.9}
+$$
+
+当式 $\text{(1.9)}$ 小于或等于 $0$ 时，表示向量 $\vec{v}$ 与向量 $\vec{n}$ 的夹角度数大于或等于 $90$，此时点 $P$ 位于空间 $S_2$，当式 $\text{(1.9)}$ 大于或等于 $\vert{n}\vert$ ，此时点 $P$ 位于空间 $S_3$，当式 $\text{(1.9)}$ 大于 $0$ 且小于 $\vert{n}\vert$ 时，则表示点 $P$ 位于空间 $S_1$。图 1.1.1 中点 $P_1$ 和 $P_2$ 位于空间 $S_1$。总结下来可以用数学式表示：
+
+$$
+h = \frac{{v}\cdot{n}}{{\vert{n}\vert}^2},\\
+$$
+
+$$
+\vert{\vec{AP}}\vert = \vert{\vec{AB}}\vert + \vert{\vec{BP}}\vert.
+$$
+
+$$
+Dist =
+\begin{cases}
+\vert{\vec{AP}}\vert,\quad(h\leq{0})\\
+\vert{\vec{BP}}\vert,\quad(h\geq{1})\\
+\vert{\vec{AP}}\vert - h\vert{\vec{AB}}\vert,\quad(0< h < 1>)
+\end{cases}
+$$
+
+只要使 $Dist < r$，点 $P$ 必然位于胶囊体内，否则点在胶囊体外。
 
 #### 参考
 
@@ -450,6 +492,8 @@ $A$，$B$ 是胶囊体的两个端点，胶囊体的半径为 $r$，$P_2$，$P_2
 [7] [Distance Field-Inigo quilez](https://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm)
 
 ### 2. 平面
+
+#### 2.4 三角形光栅化
 
 ### 3. 多边形网格
 
