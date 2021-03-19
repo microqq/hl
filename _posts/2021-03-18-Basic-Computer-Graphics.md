@@ -42,7 +42,7 @@ categories: graphics
 
 $$Ax + By + C = 0.$$
 
-<font color=#AA3333>上式不是直线唯一表达形式</font>，当满足约束条件 $A\geq0$ 且 $GCD(A,B,C)=1$（最大公约数）时，直线有唯一表达形式。
+<span style="color:#CC3333">上式不是直线唯一表达形式</span>，当满足约束条件 $A\geq0$ 且 $GCD(A,B,C)=1$（最大公约数）时，直线有唯一表达形式。
 
 - **斜截式**
 
