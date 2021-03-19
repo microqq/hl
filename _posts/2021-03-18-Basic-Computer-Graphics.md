@@ -4,7 +4,7 @@ title:  "基本3D图形"
 date:   2021-03-18
 categories: 
 - graphics
-- rendering
+- geometry
 ---
 
 <head>
