@@ -11,6 +11,11 @@
     "icon": "fa-desktop"
   },
   {
+    "text": "联系我",
+    "url": "/contactme",
+    "icon": "fa-comments"
+  }, 
+  {
     "text": "Github",
     "url": "/#",
     "icon": "fa-github"
