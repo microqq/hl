@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test Page
+title: Rendering Test Page
 date:   2015-06-04 13:50:39
 categories: 
     - graphics

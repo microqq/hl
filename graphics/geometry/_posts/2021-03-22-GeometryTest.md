@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test Page
+title: Geometry Test Page
 date:   2015-06-04 13:50:39
 categories: 
     - graphics
