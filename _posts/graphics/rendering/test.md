@@ -2,7 +2,9 @@
 layout: post
 title: Test Page
 date:   2015-06-04 13:50:39
-categories: rendering
+categories: 
+- graphics
+- rendering
 ---
 
 This is a test blog page where we can explore how to embedd images in the blog. 
