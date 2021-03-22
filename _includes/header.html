@@ -36,12 +36,20 @@
                   &raquo; 
                   {% assign temp = "" %}
                   {% for category in page.categories %}
-                    {% if forloop.first %}
+                    {% assign i = 0 %}
+                    {% for catindex in site.categoriesindex %}
+                        {% if category == catindex %}
+                            {% assign pageurl = site.categoriesmap[i] %}
+                            <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ category }}</a>    
+                        {% endif %}
+                        {% assign i = i | plus:1 %}
+                    {% endfor%}
+                    <!-- {% if forloop.first %}
                       {% capture temp %}{{category}}{% endcapture %}
                     {% else %}
                       {% capture temp %}{{temp}}/{{category}}{% endcapture %}
                     {% endif %}
-                    <a href="{{ site.baseurl }}/category/{{ temp }}">{{ category }}</a>
+                    <a href="{{ site.baseurl }}/category/{{ temp }}">{{ category }}</a> -->
                     {% if forloop.last == false %}, {% endif %}
                   {% endfor %}
                 </span>
