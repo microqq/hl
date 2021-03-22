@@ -12,7 +12,7 @@ layout: default
         {% capture category_slug %}{{ category | first }}{% endcapture %}
         {% for c_slug in category_slug %}
             <!-- {% if forloop.first %} -->
-                <!-- <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button> -->
+                <button class="btn btn-sm btn-default btn-raised">{{ c_slug }}</button>
             <!-- {% else %}                 -->
                 {% assign i = 0 %}
                 {% for catindex in site.categoriesindex %}
