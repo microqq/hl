@@ -4,5 +4,5 @@ categories:
 - graphics
 - geometry
 title: 几何图元
-permalink: /category/graphics/geometry
+permalink: /graphics/geometry/category
 ---
