@@ -1,6 +1,6 @@
 ---
 layout: posts_by_category
 categories: lighting
-title: 几何图元
+title: 光照
 permalink: /category/graphics/lighting
 ---
