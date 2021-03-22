@@ -11,10 +11,9 @@ layout: default
     {% for category in site.categories %}
         {% capture category_slug %}{{ category | first }}{% endcapture %}
         {% for c_slug in category_slug %}
-            <!-- {% if c_slug == page.categories %} -->
-                <button class="btn btn-sm btn-primary btn-raised">{{ site.categories[1] }}</button>
-            <!-- {% else %} -->
-
+            {% if c_slug == page.categories %}
+                <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button>
+            {% else %}
                 {% assign temp = "" %}
                 {% for cat in page.categories %}
                     {% if forloop.first %}
@@ -23,8 +22,9 @@ layout: default
                         {% capture temp %}{{temp}}/{{cat}}{% endcapture %}
                     {% endif %}
                 {% endfor %}
-                <a href="{{ site.baseurl }}/category/{{ c_slug }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>
-            <!-- {% endif %} -->
+                {% assign pageurl = page.permalink %}
+                <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>
+            {% endif %}
         {% endfor %}
     {% endfor %}
 
