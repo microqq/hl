@@ -6,9 +6,9 @@
     "layout": "post"
   },
   {
-    "text": "文章",
+    "text": "归档",
     "url": "/blogs",
-    "icon": "fa-desktop",
+    "icon": "fa-desktop"
   },
   {
     "text": "Github",
