@@ -29,7 +29,7 @@ markdown: kramdown
 #     math_engine: katex
 gems: [jekyll-paginate, jekyll-gist]
 
-categoriesindex: [graphics,geometry,rendering]
+categoriesindex: [graphics,geometry,lighting]
 
-categoriesmap: [/category/graphics,/category/graphics/geometry,/category/graphics/rendering]
+categoriesmap: [/category/graphics,/category/graphics/geometry,/category/graphics/lighting]
 

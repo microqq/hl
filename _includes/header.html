@@ -40,7 +40,7 @@
                     {% for catindex in site.categoriesindex %}
                         {% if category == catindex %}
                             {% assign pageurl = site.categoriesmap[i] %}
-                            <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ category }}</a>    
+                            <a href="{{ site.baseurl }}{{ pageurl }}">{{ category }}</a>    
                         {% endif %}
                         {% assign i = i | plus:1 %}
                     {% endfor%}
