@@ -14,6 +14,7 @@ layout: default
             {% if c_slug == page.categories %}
                 <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button>
             {% else %}                
+                {% assign i = 0 %}
                 {% for catindex in site.categoriesindex %}
                     {% assign i = i | plus:1 %}
                     {% if c_slug == catindex %}
