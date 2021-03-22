@@ -17,7 +17,7 @@ layout: default
                 {% for catindex in site.categoriesindex %}
                     {% assign i = i | plus:1 %}
                     {% if c_slug == catindex %}
-                        {% assign pageurl = site.categoriesmap[{{i}}] %}
+                        {% assign pageurl = site.categoriesmap[i] %}
                         <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>    
                     {% endif %}
                 {% endfor%}
