@@ -36,7 +36,11 @@
                   &raquo; 
                   {% assign temp = "" %}
                   {% for category in page.categories %}
-                    {% capture temp %}{{temp}}/{{category}}{% endcapture %}
+                    {% if forloop.first %}
+                      {% capture temp %}{{category}}{% endcapture %}
+                    {% else %}
+                      {% capture temp %}{{temp}}/{{category}}{% endcapture %}
+                    {% endif %}
                     <a href="{{ site.baseurl }}/category/{{ temp }}">{{ category }}</a>
                     {% if forloop.last == false %}, {% endif %}
                   {% endfor %}
