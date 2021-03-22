@@ -11,6 +11,7 @@ layout: default
     {% for category in site.categories %}
         {% capture category_slug %}{{ category | first }}{% endcapture %}
         {% for c_slug in category_slug %}
+            {% assign pageurl = page.permalink %}
             {% if c_slug == page.categories %}
                 <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button>
             {% else %}
@@ -22,7 +23,6 @@ layout: default
                         {% capture temp %}{{temp}}/{{cat}}{% endcapture %}
                     {% endif %}
                 {% endfor %}
-                {% assign pageurl = page.permalink %}
                 <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>
             {% endif %}
         {% endfor %}
