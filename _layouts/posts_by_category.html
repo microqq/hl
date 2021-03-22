@@ -10,21 +10,23 @@ layout: default
     <hr />
     {% for category in site.categories %}
         {% capture category_slug %}{{ category | first }}{% endcapture %}
-        {% assign temp = "" %}
         {% for c_slug in category_slug %}
-            {% if forloop.first %}
-                {% capture temp %}{{c_slug}}{% endcapture %}
-            {% else %}
-                {% capture temp %}{{temp}}/{{c_slug}}{% endcapture %}
-            {% endif %}
-
-            {% if c_slug == page.categories %}
+            <!-- {% if c_slug == page.categories %} -->
                 <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button>
-            {% else %}
-                <a href="{{ site.baseurl }}/category/{{ temp }}" class="btn btn-sm btn-default btn-raised">{{ temp }}</a>
-            {% endif %}
+            <!-- {% else %} -->
+                <a href="{{ site.baseurl }}/category/{{ c_slug }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>
+            <!-- {% endif %} -->
         {% endfor %}
     {% endfor %}
+
+    <!-- {% assign temp = "" %}
+    {% for category in page.categories %}
+        {% if forloop.first %}
+            {% capture temp %}{{category}}{% endcapture %}
+        {% else %}
+            {% capture temp %}{{temp}}/{{category}}{% endcapture %}
+        {% endif %}
+    {% endfor %} -->
     <hr />
 
     {% if site.categories[page.categories] %}
