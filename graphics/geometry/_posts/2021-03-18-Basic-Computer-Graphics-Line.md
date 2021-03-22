@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "基本3D图形"
+title:  "基本3D图形（一）：直线"
 date:   2021-03-18
 categories: 
     - graphics
@@ -19,7 +19,7 @@ categories:
     </script>
 </head>
 
-基本3D图形
+基本3D图形：直线
 
 - [1. 直线](#1-直线)
   - [1.1 2D 直线](#11-2d-直线)
