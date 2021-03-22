@@ -11,9 +11,9 @@ layout: default
     {% for category in site.categories %}
         {% capture category_slug %}{{ category | first }}{% endcapture %}
         {% for c_slug in category_slug %}
-            {% if forloop.first %}
+            <!-- {% if forloop.first %} -->
                 <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button>
-            {% else %}                
+            <!-- {% else %}                 -->
                 {% assign i = 0 %}
                 {% for catindex in site.categoriesindex %}
                     {% if c_slug == catindex %}
@@ -25,12 +25,12 @@ layout: default
 
                 <!-- {% assign pageurl = page.permalink %}
                 <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a> -->
-            {% endif %}
+            <!-- {% endif %} -->
         {% endfor %}
     {% endfor %}
     <hr />
 
-    {% if site.categories[0] %}
+    <!-- {% if site.categories[0] %}
     <div class="list-group">
         {% for post in site.categories[0] %}
         <div class="list-group-item">
@@ -61,6 +61,6 @@ layout: default
     </div>
     {% else %}
         <p>There are no posts in this categories.</p>
-    {% endif %}
+    {% endif %} -->
 </div>
 </div>
