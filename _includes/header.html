@@ -34,8 +34,10 @@
               {% if page.categories.size > 0 %}
                 <span class="categories">
                   &raquo; 
+                  {% assign temp = page.categories[0]%}
                   {% for category in page.categories %}
-                    <a href="{{ site.baseurl }}/category/{{ category }}">{{ category }}</a>
+                    <a href="{{ site.baseurl }}/category/{{ temp }}">{{ category }}</a>
+                    {% temp = temp | append: '/' | append: category %}
                     {% if forloop.last == false %}, {% endif %}
                   {% endfor %}
                 </span>
