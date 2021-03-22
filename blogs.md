@@ -1,7 +1,7 @@
 ---
-layout: posts_by_category
+layout: blogs_by_category
 title: 文章目录
-permalink: /category/graphics
+permalink: /blogs
 ---
 
 <!-- This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
