@@ -42,16 +42,27 @@ categories:
 
 #### 2.1 什么是前向渲染（Forward Rendering）？
 
-   Forward Rendering是一种被大多数引擎所使用的比较传统的渲染技术，显卡（GPU）通过将应用程序阶段（CPU）所传递给它的Geometry拆解成顶点，并将其变换（transformed）和分解成为片段（fragment）或者像素，从而进入显示到屏幕前的最后的渲染操作阶段（final rendering treatment）。前向渲染的一个典型特征是一个几何体（Geometry）从传入显卡进行处理到最后屏幕显示图形的整个过程是不间断的，它是一个线性的处理过程。下图准确的描述了Forward Rendering的处理过程：
-    <img src="https://img-blog.csdn.net/20180723231152227?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p2YW5kYw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="60%" alt="" />
-    可以看到，上图有四个Geometry，对应了4个Drawcall，它们的经过VS->GS->FS，最后到达RenderTarget的阶段的过程是不会被中断的，Render Pipe（渲染管道）一次处理一个Geometry。
-    这就是我们常说的Forward Rendering，我们一贯的渲染路径都是采取这种方式。
+Forward Rendering是一种被大多数引擎所使用的比较传统的渲染技术，显卡（GPU）通过将应用程序阶段（CPU）所传递给它的Geometry拆解成顶点，并将其变换（transformed）和分解成为片段（fragment）或者像素，从而进入显示到屏幕前的最后的渲染操作阶段（final rendering treatment）。前向渲染的一个典型特征是一个几何体（Geometry）从传入显卡进行处理到最后屏幕显示图形的整个过程是不间断的，它是一个线性的处理过程。下图准确的描述了Forward Rendering的处理过程：
+
+<div align=center>
+<img src="/hl/static/img/deffered-1-20180723231152227.jpg" width=800 />
+<p align="center">图 1 </p>
+</div>
+
+可以看到，上图有四个Geometry，对应了4个Drawcall，它们的经过VS->GS->FS，最后到达RenderTarget的阶段的过程是不会被中断的，Render Pipe（渲染管道）一次处理一个Geometry。
+
+这就是我们常说的Forward Rendering，我们一贯的渲染路径都是采取这种方式。
 
 #### 2.2 什么是延迟渲染（Deferred Rendering）？
 
-   那么什么是延迟渲染（Deferred Rendering）呢？延迟二字表明了我们从Geometry到RenderTarget的处理过程不是连续的，它会将所有的Geometry从渲染管道（Render Pipe：VS->GS）输出后（输出到Geometry Buffer，也就是我们常说的G-Buffer），然后通过应用着色（applying shading）得到最后的图像，下图是Deferred Rendering的一般过程：
-        <img src="https://img-blog.csdn.net/2018072323130133?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p2YW5kYw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="60%" al="" />
-    从上图我们可以看到，在MRT之前，没有FS lighting针对每一个Geometry的处理过程，FS Lighting的处理是针对MRT的。
+那么什么是延迟渲染（Deferred Rendering）呢？延迟二字表明了我们从Geometry到RenderTarget的处理过程不是连续的，它会将所有的Geometry从渲染管道（Render Pipe：VS->GS）输出后（输出到Geometry Buffer，也就是我们常说的G-Buffer），然后通过应用着色（applying shading）得到最后的图像，下图是Deferred Rendering的一般过程：
+
+<div align=center>
+<img src="/hl/static/img/deffered-2-20180723231152227.jpg" width=800 />
+<p align="center">图 2 </p>
+</div>
+
+从上图我们可以看到，在MRT之前，没有FS lighting针对每一个Geometry的处理过程，FS Lighting的处理是针对MRT的。
 
 为什么要这样做呢？
 
@@ -68,9 +79,15 @@ categories:
 延迟渲染不会关心场景中有多少个物件会显示在屏幕上，它的计算复杂度与屏幕分辨率及光源数量有关。
 
 - 延迟渲染的工作原理
-    延迟着色的基本原理是，通过MRT（multiple render targets）将几何体（geometry）渲染到屏幕空间，渲染过程并不包括光照着色（light shading），深度缓冲，法向量缓冲以及颜色缓冲作为不同的缓冲区被写入，这些缓冲区能够提供足够的信息使Fragment Shader每一个光源针对每一个像素完成光照计算。
-    <img src="https://img-blog.csdn.net/20180723231414749?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p2YW5kYw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="60%" alt="" />
-     知道每一个像素的距离，和它对应的法向量，我们可以得到光源照射在该像素上的最终渲染效果。
+    
+延迟着色的基本原理是，通过MRT（multiple render targets）将几何体（geometry）渲染到屏幕空间，渲染过程并不包括光照着色（light shading），深度缓冲，法向量缓冲以及颜色缓冲作为不同的缓冲区被写入，这些缓冲区能够提供足够的信息使Fragment Shader每一个光源针对每一个像素完成光照计算。
+
+<div align=center>
+<img src="/hl/static/img/deffered-3-20180723231152227.jpg" width=800 />
+<p align="center">图 3 </p>
+</div>
+
+知道每一个像素的距离，和它对应的法向量，我们可以得到光源照射在该像素上的最终渲染效果。
 
 #### 选择哪一种渲染方式呢？
 
