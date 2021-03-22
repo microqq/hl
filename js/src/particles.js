@@ -1,3 +1,5 @@
+// https://my.oschina.net/u/4383199/blog/3369694
+
 var fgm = {
     on: function (element, type, handler) {
         return element.addEventListener ? element.addEventListener(type, handler, false) : element.attachEvent("on" + type, handler)
