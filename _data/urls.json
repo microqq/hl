@@ -6,6 +6,11 @@
     "layout": "post"
   },
   {
+    "text": "文章",
+    "url": "/blogs",
+    "icon": "fa-desktop",
+  },
+  {
     "text": "Github",
     "url": "/#",
     "icon": "fa-github"

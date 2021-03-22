@@ -28,15 +28,6 @@ layout: default
             {% endif %}
         {% endfor %}
     {% endfor %}
-
-    <!-- {% assign temp = "" %}
-    {% for category in page.categories %}
-        {% if forloop.first %}
-            {% capture temp %}{{category}}{% endcapture %}
-        {% else %}
-            {% capture temp %}{{temp}}/{{category}}{% endcapture %}
-        {% endif %}
-    {% endfor %} -->
     <hr />
 
     {% if site.categories[page.categories] %}
