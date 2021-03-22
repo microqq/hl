@@ -11,19 +11,19 @@ layout: default
     {% for category in site.categories %}
         {% capture category_slug %}{{ category | first }}{% endcapture %}
         {% for c_slug in category_slug %}
-            {% assign pageurl = page.permalink %}
             {% if c_slug == page.categories %}
                 <button class="btn btn-sm btn-primary btn-raised">{{ c_slug }}</button>
-            {% else %}
-                {% assign temp = "" %}
-                {% for cat in page.categories %}
-                    {% if forloop.first %}
-                        {% capture temp %}{{cat}}{% endcapture %}
-                    {% else %}
-                        {% capture temp %}{{temp}}/{{cat}}{% endcapture %}
+            {% else %}                
+                {% for catindex in site.categoriesindex %}
+                    {% assign i = i | plus:1 %}
+                    {% if c_slug == catindex %}
+                        {% assign pageurl = site.categoriesmap[{{i}}] %}
+                        <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>    
                     {% endif %}
-                {% endfor %}
-                <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a>
+                {% endfor%}
+
+                <!-- {% assign pageurl = page.permalink %}
+                <a href="{{ site.baseurl }}{{ pageurl }}" class="btn btn-sm btn-default btn-raised">{{ c_slug }}</a> -->
             {% endif %}
         {% endfor %}
     {% endfor %}
