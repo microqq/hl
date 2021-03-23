@@ -123,8 +123,8 @@ $$
 
 $$
 \begin{cases}
-A_1x + B_1y + C_1z + D1 = 0,\\
-A_2x + B_2y + C_2z + D2 = 0.
+A_1x + B_1y + C_1z + D_1 = 0,\\
+A_2x + B_2y + C_2z + D_2 = 0.
 \end{cases}
 \Leftrightarrow
 \begin{cases}
