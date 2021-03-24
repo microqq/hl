@@ -182,7 +182,7 @@ $$
 
 绘制平面顶点着色器程序代码如下：
 
-```C
+```GLSL
 #version 330 core
 #extension GL_ARB_shading_language_include : require
 
@@ -210,7 +210,7 @@ void main()
 
 像素着色器程序代码如下：
 
-```C
+```GLSL
 #version 330 core
 #extension GL_ARB_conservative_depth : enable
 
