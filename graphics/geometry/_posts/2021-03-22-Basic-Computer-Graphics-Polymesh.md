@@ -74,7 +74,7 @@ F=faces=\{(A,B,I),(B,C,I),(A,I,M,L),...\}.
 $$
 
 <div align=center>
-<img src="/hl/static/img/connected-mesh.png" width=800 />
+<img src="/hl/static/img/connected-mesh.png" width=600 />
 <p align="center">图 1</p>
 </div>
 
@@ -113,7 +113,7 @@ $$
 网格面的方向指的是面的入射顶点的循环次序，如果两个邻接面的共有边的次序是相反的，就认为这两个邻接面方向是相容的，当流形网格的所有邻接面方向相容，那么该流形网格就称为可定向。
 
 <div align=center>
-<img src="/hl/static/img/face-orientation.png" width=800 />
+<img src="/hl/static/img/face-orientation.png" width=400 />
 <p align="center">图 4</p>
 </div>
 
