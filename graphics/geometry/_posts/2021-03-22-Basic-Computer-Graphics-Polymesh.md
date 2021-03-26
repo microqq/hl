@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "基本3D图形（三）：多边形网格"
+title:  "基本3D图形（三）：多边形网格浅谈"
 date:   2021-03-22
 categories: 
     - graphics
@@ -19,9 +19,9 @@ categories:
     </script>
 </head>
 
-基本3D图形：多边形网格
+基本3D图形：多边形网格浅谈
 
-- [3. 多边形网格](#3-多边形网格)
+- [3. 多边形网格浅谈](#3-多边形网格浅谈)
   - [3.1 凸多边形与凹多边形](#31-凸多边形与凹多边形)
   - [3.2 连通网格](#32-连通网格)
   - [3.3 流形网格](#33-流形网格)
@@ -31,7 +31,7 @@ categories:
   - [3.4 网格数据结构](#34-网格数据结构)
   - [参考](#参考)
 
-### 3. 多边形网格
+### 3. 多边形网格浅谈
 
 多边形网格是顶点、边，以及面的集合，它定义了多面对象形状[<sup>[2]</sup>](#refer-anchor-2)。
 
@@ -106,11 +106,11 @@ $$
 
 <!-- ![closed-opend-fan](resources/6e506fcd43574fa284f7c062eb346fb5.png) -->
 
-不满足条件的连通的多边形网格称为非流形网格。
+不满足条件的多边形网格即是非流形网格。
 
 ##### 3.3.2 可定向流形网格
 
-网格面的方向指的是面的入射顶点的循环次序，如果两个邻接面的共有边的次序是相反的，就认为这两个邻接面方向是相容的，当流形网格的所有邻接面方向相容，那么该流形网格就称为可定向。
+网格面的方向指的是面的入射顶点的循环次序，如果两个邻接面的共有边的次序是相反的，就认为这两个邻接面方向是相容的，当流形网格的所有邻接面方向相容，那么该流形网格就称为可定向。比如流形网格的所有面都是顺时针（CW）或者逆时针（CCW）的。
 
 <div align=center>
 <img src="/hl/static/img/face-orientation.png" width=400 />
@@ -119,7 +119,7 @@ $$
 
 <!-- ![face-orientation](resources/fd776f7da3754860ae02d937d43aaff8.png) -->
 
-莫比乌斯环和克莱因瓶是不可定向流形网格两个例子。
+莫比乌斯环和克莱因瓶是不可定向流形网格两个例子[<sup>[12]</sup>](#refer-anchor-12)，不同的是后者是一个不可定向的闭合曲面。
 
 ##### 3.3.3 闭合流形网格
 
@@ -127,9 +127,40 @@ $$
 
 #### 3.4 网格数据结构
 
+- 顶点-顶点结构[<sup>[2]</sup>](#refer-anchor-2)
+
+Vertex-vertex-mesh(VV) 只有一张顶点邻接信息表，这种网格数据结构比较简单，它的特点是需求存储空间比较小，也能够有效的支持形状变化。这种结构缺点也很明显，因为边和面的信息是隐藏的，因此在渲染时需要耗时较多的计算查找边和面的信息，同时不能有效支持动态操作边和面。
+
+<div align=center>
+<img src="/hl/static/img/vertex-vertex-mesh.png" width=400 />
+<p align="center">图 5(图片来自维基百科<sup>[2]</sup>)</p>
+</div>
+
+<!-- ![vertext-vertex-mesh](resources/43091038e958473da3d431fa478ac3b8.png) -->
+
+- 面-顶点结构[<sup>[2]</sup>](#refer-anchor-2)
+
+Face-vertex-mesh 有两张信息表分别是面邻接信息表和顶点邻接信息表，通过面邻接信息表可以迅速通过索引查找关联的顶点数据，通过顶点邻接信息表则可以查找到关联的面数据，这种数据结构对于渲染是很有利的，能够迅速建立索引，同时当顶点位置（或颜色等）发生变化时（非几何形变），只需要重新向 GPU 输送顶点数据即可。缺点是边的信息是隐式的，这种结构不支持直接的边操作，一些动态操作比如分裂或者合并一个面，很难使用这种结构完成。
+
+<div align=center>
+<img src="/hl/static/img/face-vertex-mesh.png" width=400 />
+<p align="center">图 6(图片来自维基百科<sup>[2]</sup>)</p>
+</div>
+
+<!-- ![face-vertex-mesh](resources/6a04e6735d5c4333a3b15b1528e8b558.png) -->
+
 - 翼边数据结构
+
+翼边数据结构是基于边的邻接信息存储结构，它有三张邻接信息表，其中最重要的是边邻接信息表，它会存储边的两个端顶点，边的左右两面，以及分别与两个端顶点衔接的四条边，示意图如下：
+
+<div align=center>
+<img src="/hl/static/img/winged-edge-datastruct.png" width=400 />
+<p align="center">图 7</p>
+</div>
+
+<!-- ![winged-edge-datastruct](resources/ba84315837cc48018b53a8ae4c835aa2.png) -->
   
-- 半边数据结构
+- 半边数据结构[<sup>[15]</sup>](#refer-anchor-15)
 
 #### 参考
 
@@ -172,3 +203,23 @@ $$
 <div id="refer-anchor-10"></div>
 
 [10] Philip Schneider, David H. Eberly, Geometric tools for computer graphics
+
+<div id="refer-anchor-11"></div>
+
+[11] [Manifold-Wiki](https://en.wikipedia.org/wiki/Manifold)
+
+<div id="refer-anchor-12"></div>
+
+[12] [克莱因瓶-Wiki](https://zh.wikipedia.org/wiki/%E5%85%8B%E8%8E%B1%E5%9B%A0%E7%93%B6)
+
+<div id="refer-anchor-13"></div>
+
+[13] [流形-Wiki](https://zh.wikipedia.org/wiki/%E6%B5%81%E5%BD%A2)
+
+<div id="refer-anchor-14"></div>
+
+[14] [Half-Edge Data Structures](https://www.flipcode.com/archives/The_Half-Edge_Data_Structure.shtml)
+
+<div id="refer-anchor-15"></div>
+
+[15] Mario Botsch, Leif Kobbelt, Mark Pauly, Pierre Alliez, Bruno L´evy, Polygon Mesh Processing.
