@@ -206,7 +206,7 @@ struct WindgedVertex
 
 <div align=center>
 <img src="/hl/static/img/half-edge-orientation.png" width=400 />
-<p align="center">图 8</sup>)</p>
+<p align="center">图 8</p>
 </div>
 
 <!-- ![half-edge-orientation](resources/00d0946b0f7a418aa1ad12b4b4d0aed9.png) -->
