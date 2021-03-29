@@ -97,7 +97,7 @@ $$
 
 - 流形网格首先必须是连通网格；
 - 流形网格的每一条边最多只能有两个共享面；
-- 入射到一个顶点的多个面和该顶点形成一个闭合或者开放扇形，如图 3。
+- 关联到一个顶点的多个面和该顶点形成一个闭合或者开放扇形，如图 3。
 
 <div align=center>
 <img src="/hl/static/img/closed-opend-fan.png" width=800 />
@@ -149,18 +149,99 @@ Face-vertex-mesh 有两张信息表分别是面邻接信息表和顶点邻接信
 
 <!-- ![face-vertex-mesh](resources/6a04e6735d5c4333a3b15b1528e8b558.png) -->
 
-- 翼边数据结构
+- 翼边数据结构[<sup>[18]</sup>](#refer-anchor-18)
 
 翼边数据结构是基于边的邻接信息存储结构，它有三张邻接信息表，其中最重要的是边邻接信息表，它会存储边的两个端顶点，边的左右两面，以及分别与两个端顶点衔接的四条边，示意图如下：
 
 <div align=center>
-<img src="/hl/static/img/winged-edge-datastruct.png" width=400 />
-<p align="center">图 7</p>
+<img src="/hl/static/img/winged-edge-data-structure.png" width=400 />
+<p align="center">图 7(图片引自<sup>[19]</sup>)</p>
 </div>
 
 <!-- ![winged-edge-datastruct](resources/ba84315837cc48018b53a8ae4c835aa2.png) -->
   
+可以注意到，中心边邻接关系表采用双向连接边列表（Doubly-Connected Edge List-DCEL）存储关联的点、面以及邻接边数据，中心边顺时针和者逆时针遍历时确定左侧和右侧前后邻接边。
+
+其他两张邻接表比较简单，如点邻接关系表存储了与该点关联的一条边，同样的面邻接关系表则存储了与该面关联的一条边界边。点与面都可能关联多条边，所以选择不同的关联边，会得到不同的点和面邻接关系表。
+
+结构代码如下：
+
+```C++
+struct WingedEdge
+{
+  WingedVertex *startVertex{nullptr};
+  WingedVertex *endVertex{nullptr};
+
+  WingedFace *leftFace{nullptr};
+  WingedFace *rightFace{nullptr};
+
+  WingedEdge *leftPreEdge{nullptr}; 
+  WingedEdge *rightPreEdge{nullptr}; 
+  WingedEdge *leftSucEdge{nullptr}; 
+  WingedEdge *rightSucEdge{nullptr}; 
+};
+
+struct WingedFace
+{
+  //face data
+  //...
+
+  WingedEdge* *wEdge{nullptr};
+};
+
+struct WindgedVertex
+{
+  //vertex data 
+  //...
+
+  WingedEdge* wEdge{nullptr}; 
+};
+```
+
+由于翼边结构中心边的方向并不明确，在遍历关联面时，这条边可能是顺时针或者逆时针的，所以就需要额外的计算确定遍历时边的方向。
+
 - 半边数据结构[<sup>[15]</sup>](#refer-anchor-15)
+
+半边结构（Half-Edge Data Structure）解决了翼边所遇到的问题，它将一条中心边抽象的拆成两条反向的方向边，每个方向边则属于不同的环，如图：
+
+<div align=center>
+<img src="/hl/static/img/half-edge-orientation.png" width=400 />
+<p align="center">图 8</sup>)</p>
+</div>
+
+<!-- ![half-edge-orientation](resources/00d0946b0f7a418aa1ad12b4b4d0aed9.png) -->
+
+每一个方向边邻接表只存储半边的起始（或者结束）点、关联面、反向的邻接半边，以及前后两个邻接半边，代码如下：
+
+```C++
+struct HalfEdge
+{
+  HalfVertex* hVertex{nullptr};
+  HalfFace* hFace{nullptr};
+
+  HalfEdge* twinHEdge{nullptr};
+  HalfEdge* preHEdge{nullptr};
+  HalfEdge* sucHEdge{nullptr};
+};
+
+struct HalfFace
+{
+  //face data
+  //...
+
+  HalfEdge* hEdge{nullptr};
+};
+
+struct HalfVertex
+{
+  //vertex data
+  //...
+
+  HalfEdge* hEdge{nullptr};
+};
+```
+
+半边结构相对翼边结构而言遍历查询时不需要方向判断，减少了不必要的开销。半边结构不支持非流形网格，如一个边被三个面共享的非流形网格，采用半边结构无法确定边的方向。
 
 #### 参考
 
@@ -223,3 +304,19 @@ Face-vertex-mesh 有两张信息表分别是面邻接信息表和顶点邻接信
 <div id="refer-anchor-15"></div>
 
 [15] Mario Botsch, Leif Kobbelt, Mark Pauly, Pierre Alliez, Bruno L´evy, Polygon Mesh Processing.
+
+<div id="refer-anchor-16"></div>
+
+[16] James Arvo, Graphics Gemes II
+
+<div id="refer-anchor-17"></div>
+
+[17] [Euler Characteristic-Wiki]https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E7%A4%BA%E6%80%A7%E6%95%B0
+
+<div id="refer-anchor-18"></div>
+
+[18] [Bruce G. Baumgart,Winged-Edge Polyhedron Representation for Computer Vision](https://web.archive.org/web/20050829135758/http://www.baumgart.org/winged-edge/winged-edge.html)
+
+<div id="refer-anchor-19"></div>
+
+[19] [Winged Edge Data Structure-mtu.edu](https://pages.mtu.edu/~shene/COURSES/cs3621/NOTES/model/winged-e.html)
