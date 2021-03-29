@@ -311,7 +311,7 @@ struct HalfVertex
 
 <div id="refer-anchor-17"></div>
 
-[17] [Euler Characteristic-Wiki]https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E7%A4%BA%E6%80%A7%E6%95%B0
+[17] [Euler Characteristic-Wiki](https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E7%A4%BA%E6%80%A7%E6%95%B0)
 
 <div id="refer-anchor-18"></div>
 
