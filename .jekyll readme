@@ -1,0 +1,10 @@
+1\ install ruby installer
+2\ install rubygems
+3\ run command in cmd window
+    gem install jekyll
+4\ make dir and create jekyll blog, then run jekyll server
+    (1) mkdir XXX(Jekyll blog dir)
+    (2) jekyll new YYY(blog name)
+    (3) cd XXX
+    (4) jekyll server(if pop error tip, try "bundle exec jekyll server")
+    (5) http://127.0.0.1:4000/
