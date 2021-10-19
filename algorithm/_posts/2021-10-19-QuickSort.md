@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "快速排序"
-date:   2021-10-21
+date:   2021-10-19
 categories: 
     - algorithm
 ---
@@ -89,6 +89,42 @@ void QuickSort(vector<int> &input, int start, int end) {
     int split = Partion(input, start, end);
     QuickSort(input, start, split -1);
     QuickSort(input, split + 1, end);
+}
+```
+
+嗯嗯！我们都已经听说了，递归是利用堆栈来实现的，每当函数调用自身时，堆栈就会增加一层，每当函数返回时，堆栈就会减少一层。
+
+递归过程中堆栈到底存了些什么？
+
+递归函数调用过程中堆栈存储了函数执行上下文。以上面 QuickSort 递归实现为例，我们可以观察到，每一次递归调用时，split、start 和 end 变量值都是不一样的，每一次调用我们都需要在堆栈中存储一份这些变量值，多少次调用便存储多少份。
+
+迭代划分实现：
+
+```C++
+struct Range {
+    int start;
+    int end;
+
+    Range(int s, int e) 
+    : start(e)
+    , end(e) {}
+};
+
+void QuickSort(vector<int> &input) {
+    vector<Range> ranges;
+    ranges.push_back(Range(0, input.size() - 1));
+
+    while (ranges.size() > 0) {
+        auto &range = ranges.back();
+        if (range.start >= range.end) {
+            continue;
+        }
+        ranges.pop_back();
+
+        int split = Partion(input, range.start, range.end);
+        ranges.push_back(Range(range.start, split - 1));
+        ranges.push_back(Range(split + 1, range.end));
+    }
 }
 ```
 
