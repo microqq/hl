@@ -27,6 +27,8 @@ paginate_path: "/page:num/"
 markdown: kramdown
 # kramdown:
 #     math_engine: katex
+kramdown:
+  syntax_highlighter: rouge
 gems: [jekyll-paginate, jekyll-gist]
 
 categoriesindex: [

@@ -16,6 +16,7 @@ categories:
             }
         });
     </script>
+    <link href="/static/css/rouge.css" rel="stylesheet"/>
 </head>
 
 动态规划
@@ -549,3 +550,7 @@ bool canJump(vector<int> &A) {
 <div id="refer-anchor-2"></div>
 
 [2] [动态规划算法-Bilibili](https://www.bilibili.com/video/BV1nt4y1Y7n7?spm_id_from=333.999.0.0)
+
+<div id="refer-anchor-3"></div>
+
+[3]《背包九讲》
