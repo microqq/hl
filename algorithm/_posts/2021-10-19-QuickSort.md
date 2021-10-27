@@ -46,7 +46,7 @@ categories:
 
 通常一般的快速排序都会选择区间内第一个元素为基准值，划分集合代码：
 
-```C++
+```c++
 int Partion(vector<int> &input, int start, int end) {
   int pivotIndex = start;
   int pivot = input[pivotIndex];
@@ -80,7 +80,7 @@ int Partion(vector<int> &input, int start, int end) {
 
 递归划分实现：
 
-```C++
+```c++
 void QuickSort(vector<int> &input, int start, int end) {
     if (start >= end) {
         return;
@@ -100,7 +100,7 @@ void QuickSort(vector<int> &input, int start, int end) {
 
 迭代划分实现：
 
-```C++
+```c++
 struct Range {
     int start;
     int end;

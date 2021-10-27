@@ -55,7 +55,7 @@ categories:
 
 递归：
 
-```C++
+```c++
 void HanoiTower(int n, string source, string helper, string target) {
     if (n == 1) {
         cout << n <<  " source to target" << endl;
@@ -76,7 +76,7 @@ void HanoiTower(int n, string source, string helper, string target) {
 迭代：
 3Blue1Brown 介绍了一种二进制解汉诺塔问题的方法：https://www.bilibili.com/video/BV1rs411Y76X?zw
 
-```C++
+```c++
 ```
 
 #### 参考

@@ -47,7 +47,7 @@ categories:
 
 递归:
 
-```C++
+```c++
 void Merge(vector<int> &array, int start, int mid, int end) {
     vector<int> leftArray(array.begin() + start, array.begin() + mid);
     vector<int> rightArray(array.begin() + mid + 1, array.begin() + end);
@@ -84,7 +84,7 @@ void MergeSort(vector<int> &array, int start, int end) {
 迭代：
 归并排序的迭代实现需要自下而上反推，将 $n$ 个元素的待排序数组看作 $n$ 个只有一个元素的子数组，这样我们可以按照 $1、2、4、8...$ 的步长合并数组。
 
-```C++
+```c++
 void MergeSort(vector<int> &input) {
     vector<int> temp(input.begin(), input.end());
     

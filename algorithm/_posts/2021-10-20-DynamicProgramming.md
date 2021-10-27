@@ -233,7 +233,7 @@ $$
 
 **代码实现**
 
-```C++
+```c++
 int robotPaths(int m, int n) {
     if (m <= 0 || n <= 0) {
         return 0;
@@ -304,7 +304,7 @@ $f(0,j)$ 等于单套房子染色花费。
 **计算顺序**，从第 $0$ 套房子开始计算每个阶段决策状态。$min(f(n-1, j))$ —— 即为最终的解。
 
 **代码实现**,
-```C++
+```c++
 int minCost(vector<vector<int>> &costs) {
   int rows = costs.size();
   if (rows == 0) {
@@ -353,7 +353,7 @@ $$
 **计算顺序**，按照从左到右，从上到下的顺序计算即可。
 
 **代码实现**,
-```C++
+```c++
 int minCost(vector<vector<int>> &costs) {
   int rows = costs.size();
   if (rows == 0) {
@@ -430,7 +430,7 @@ $$
 **计算顺序**，我们从第 $2$ 个字符开始计算。
 
 **代码实现**，
-```C++
+```c++
 int numDecodings(string &s) {
     int length = s.length();
     if (length == 0 || s[0] == '0') {
@@ -513,7 +513,7 @@ $$
 **初始条件和边界约束**，开始我们位于 $0$ 位置，因此 $f(0) = true$。当目标位置与当前位置的距离超出了当前位置的最大跳跃距离时，就表明从当前位置无法到达目标位置。
 
 **代码实现**,
-```C++
+```c++
 bool canJump(vector<int> &A) {
     int length = A.size();
     if (length == 0) {

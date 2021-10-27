@@ -166,7 +166,7 @@ Face-vertex-mesh 有两张信息表分别是面邻接信息表和顶点邻接信
 
 结构代码如下：
 
-```C++
+```c++
 struct WingedEdge
 {
   WingedVertex *startVertex{nullptr};
@@ -213,7 +213,7 @@ struct WindgedVertex
 
 每一个方向边邻接表只存储半边的起始（或者结束）点、关联面、反向的邻接半边，以及前后两个邻接半边，代码如下：
 
-```C++
+```c++
 struct HalfEdge
 {
   HalfVertex* hVertex{nullptr};
