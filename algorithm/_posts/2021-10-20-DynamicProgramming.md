@@ -16,7 +16,6 @@ categories:
             }
         });
     </script>
-    <link href="/static/css/rouge.css" rel="stylesheet"/>
 </head>
 
 动态规划
@@ -142,7 +141,7 @@ $f(-1)、f(-4)$ 自变量分别等于 $-1、-4$，属于边界以外（小于0�
 
 **代码实现**，
 
-~~~C++
+```C++
 #include <vector>
 #include <limits>
 
@@ -175,7 +174,7 @@ int coinChange(vector<int> &coins, int amount) {
 
     return ret;
 }
-~~~
+```
 
 ##### 3.2 机器人路径问题（计数型动态规划）
 
